@@ -6,7 +6,9 @@ module.exports = postcss.plugin('simple-variables', (vars = {}) => {
 	return (root, results) => {
 		root.walkDecls(decl => {
 			if (isVariable.test(decl.value)) {
-				decl.value = vars[decl.value.replace('$', '')];
+				let prop = decl.value.replace('$', '');
+
+				decl.value = vars[prop];
 			}
 		});
 	}
